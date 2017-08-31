@@ -1,2 +1,36 @@
 class AlbumsController < ApplicationController
+  def index
+    @albums = Album.all
+  end
+
+  def new
+    @album = Album.new
+  end
+
+  def create
+    @album = Album.new(album_params)
+    if @album.save
+      notice: 'Board game was successfully created.'
+    else
+      render :new
+    end
+  end
+
+  def show
+  end
+
+  private
+
+  def set_album
+    @album = Album.find(params[:id])
+  end
+
+  def album_params
+    params.require(:album).
+        permit(
+          :title,
+          :artist,
+          :release_year
+        )
+  end
 end
