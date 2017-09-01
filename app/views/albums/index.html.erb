@@ -1,5 +1,9 @@
 <h1> Albums </h1>
 
-<%= @albums.each do |album| %>
-  <%= album %>
+<% @albums.each do |album| %>
+  <ul>
+  <li> <strong><%= album.title %></strong> </li>
+  <span> <%= album.artist %> </span>
+  <br>
+  </ul>
 <% end %>
