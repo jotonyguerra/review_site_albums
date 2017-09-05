@@ -14,5 +14,11 @@ feature 'user adds an album' do
       expect(page).to have_content('Successfully added album')
       expect(page).to have_content('Damn')
     end
+    scenario 'fail to add album by leaving a field empty' do
+      visit new_album_path
+      fill_in('Title', with: 'Damn')
+      click_button 'Create Album'
+      expect(page).to have_content('Title and Artist must be filled')
+    end
   end
 end

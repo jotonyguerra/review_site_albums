@@ -18,6 +18,7 @@ class AlbumsController < ApplicationController
       flash[:notice] = 'Successfully added album'
       redirect_to albums_path
     else
+      flash[:notice] = 'Title and Artist must be filled'
       render :new
     end
   end
