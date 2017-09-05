@@ -7,14 +7,10 @@ feature 'user adds an album' do
   context "user visit new album page" do
     scenario 'add an album to be reviewed' do
       visit new_album_path
-
-      save_and_open_page
-
       fill_in('Title', with: 'Damn')
       fill_in('Artist', with: 'Kendrick Lamar')
-      fill_in('Release_year', with: '2017')
-
-
+      fill_in('Release year', with: '2017')
+      click_button 'Create Album'
       expect(page).to have_content('Successfully added album')
       expect(page).to have_content('Damn')
     end

@@ -4,7 +4,7 @@ require 'rails_helper'
 
 feature "user can create an account" do
   context "as an unauthenticated user" do
-    
+
     scenario "user visits sign up page" do
       visit root_path
       click_link "sign up"
@@ -25,12 +25,3 @@ feature "user can create an account" do
     end
   end
 end
-
-
-
-    # fill_in 'Email', with: 'testuser@example.com'
-    # fill_in 'Password', with: 'password'
-    # fill_in 'Password confirmation', with: 'password'
-    # click_button 'Sign up'
-    #
-    # expect(page).to have_content('sign out')
