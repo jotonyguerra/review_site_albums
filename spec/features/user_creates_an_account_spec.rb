@@ -1,25 +1,22 @@
 require 'rails_helper'
 
-feature 'user adds an album', %q(
+feature 'user adds an album' do
+  let!(:user) { FactoryGirl.create(:user) }
+  before { login_as(user, scope: :user) }
 
-  As a user
-  I want to add board games
-  So that I can keep track of my collection
+  context "user visit new album page" do
+    scenario 'add an album to be reviewed' do
+      visit new_album_path
 
-) do
+      save_and_open_page
 
-  let(:user) { FactoryGirl.create(:user) }
+      fill_in('Title', with: 'Damn')
+      fill_in('Artist', with: 'Kendrick Lamar')
+      fill_in('Release_year', with: '2017')
 
-  scenario 'add an album to be reviewed' do
-    login_as(user)
-    visit #new path for album
 
-    fill_in 'title' with: 'Damn'
-    fill_in 'artist' with: 'Kendrick Lamar'
-    fill_in 'release_year' with: '2017'
-
-    expect(page).to have_content()
-    expect(page).to have_content('Damn')
+      expect(page).to have_content('Successfully added album')
+      expect(page).to have_content('Damn')
+    end
   end
-
 end

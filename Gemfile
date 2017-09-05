@@ -14,16 +14,16 @@ gem 'puma', '~> 3.7'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
-
 gem 'foundation-rails'
 gem 'rspotify'
+gem 'rest-client'
 
 group :development, :test do
+
   gem 'pry-rails'
   gem 'rspec-rails'
   gem 'capybara'
   gem 'launchy'
-  gem "factory_girl"
   gem "factory_girl_rails"
   gem 'valid_attribute'
   gem 'shoulda-matchers', require: false

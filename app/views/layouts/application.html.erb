@@ -9,12 +9,25 @@
   </head>
 
   <body>
+    <div>
+       <% if flash[:notice] %>
+         <p><%= flash[:notice] %></p>
+       <% end %>
+       <% if flash[:success] %>
+         <p><%= flash[:success] %></p>
+       <% end %>
+       <% if flash[:errors] %>
+         <p><%= flash[:errors] %></p>
+       <% end %>
+     </div>
+    <div>
     <% if user_signed_in? %>
       <%= link_to "sign out", destroy_user_session_path %>
     <% else %>
       <%= link_to "sign in", new_user_session_path %>
       <%= link_to "sign up", new_user_registration_path %>
     <% end %>
+    </div>
     <%= yield %>
   </body>
 </html>

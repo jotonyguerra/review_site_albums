@@ -4,6 +4,9 @@
   <ul>
   <li> <strong><%= album.title %></strong> </li>
   <span> <%= album.artist %> </span>
+  <li> <%= link_to "show", album_path(album) %> </li>
   <br>
   </ul>
 <% end %>
+
+<%= link_to "Add new album", new_album_path %>

@@ -2,11 +2,10 @@ class AlbumsController < ApplicationController
 
   def index
     @albums = Album.all
-  #   if !params[:album_title].empty?
-  #    @albums = RSpotify::Album.search(params[:album_title])
-  #  else
-  #    redirect_to root_path
-  #  end
+  end
+
+  def show
+    @album = Album.find(params[:id])
   end
 
   def new
@@ -30,8 +29,7 @@ class AlbumsController < ApplicationController
   def set_album
     @album = Album.find(params[:id])
   end
-  #testing things out
-  # ActionController::Parameters.permit_all_parameters = true
+
   def album_params
     params.require(:album).
         permit(
