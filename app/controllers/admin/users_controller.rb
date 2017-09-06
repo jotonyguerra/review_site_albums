@@ -11,6 +11,10 @@ class Admin::UsersController < ApplicationController
       redirect_to root_path
     end
   end
+  def admin?
+    role == "admin"
+  end
+
 
 end
 #need to refactor
