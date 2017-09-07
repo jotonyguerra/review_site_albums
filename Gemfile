@@ -33,4 +33,9 @@ group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
 end
 
+gem 'rails_12factor', group: :production
+
+
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+ruby '2.2.5'

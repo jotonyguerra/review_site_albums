@@ -1,5 +1,5 @@
 class AlbumsController < ApplicationController
-
+  before_action :authorize_user, except: [:index, :show]
   def index
     @albums = Album.all
   end
@@ -23,22 +23,22 @@ class AlbumsController < ApplicationController
     end
   end
 
-  def show
+  protected
+
+  def authorize_user
+    if !user_signed_in? || !current_user.admin?
+      flash[:notice] = "Please Sign in to add a new item"
+      redirect_to root_path
+      # raise ActionController::RoutingError.new("Not Found")
+    end
   end
 
   private
-
   def set_album
     @album = Album.find(params[:id])
   end
 
   def album_params
-    params.require(:album).
-        permit(
-          :title,
-          :artist,
-          :release_year,
-          :name
-        )
+    params.require(:albums).permit(:title, :artist, :release_year,)
   end
 end

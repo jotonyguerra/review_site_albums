@@ -4,14 +4,17 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "AlbumRev" %></title>
 
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
   </head>
+  <style>
+    body {background-color: #FFCCE6}
+  </style>
 
-  <body>
+  <div class="top-bar">
     <% if user_signed_in? %>
       <%= link_to "sign out", destroy_user_session_path, method: :delete %>
       <%= link_to "Edit Account", edit_user_registration_path %>
@@ -19,8 +22,11 @@
       <%= link_to "sign in", new_user_session_path %>
       <%= link_to "sign up", new_user_registration_path %>
     <% end %>
+  </div>
 
+  <body>
+    <div class="row">
     <%= yield %>
-
+    </div>
   </body>
 </html>

@@ -1,12 +1,15 @@
 <h1> Albums </h1>
 <%= render 'flash' %>
+<div>
 <% @albums.each do |album| %>
   <ul>
-  <li> <strong><%= album.title %></strong> </li>
-  <span> <%= album.artist %> </span>
-  <li> <%= link_to "show", album_path(album) %> </li>
-  <br>
+    <li> <strong><%= album.title %></strong>
+      <%= link_to "show", album %>
+    </li>
+    <span> <%= album.artist %> </span>
+    <br>
   </ul>
 <% end %>
-
+</div>
+<br>
 <%= link_to "Add new album", new_album_path %>

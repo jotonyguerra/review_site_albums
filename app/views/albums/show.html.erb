@@ -1,3 +1,8 @@
-<h1><% @album %>  </h1>
+<h1> <%= @album.title %>  </h1>
 
-<% @album.title %>
+<div>
+  <ul>
+  <li><%= @album.artist %> </li>
+  <li><%= @album.release_year %></li>
+  </ul>
+</div>
