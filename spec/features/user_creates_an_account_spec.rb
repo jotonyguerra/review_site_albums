@@ -1,10 +1,19 @@
 require 'rails_helper'
 
 feature 'user adds an album' do
-  let!(:user) { FactoryGirl.create(:user) }
-  before { login_as(user, scope: :user) }
+  let!(:album) {FactoryGirl.create(:album)}
+  context "As an unauthenticated user" do
+    scenario "views the a list of albums on the index page" do
+      visit root_path
+      expect(page).to have_content("Abbey Road")
+    end    
 
-  context "user visit new album page" do
+  end
+
+  context " authenticated user visit new album page" do
+    let!(:user) { FactoryGirl.create(:user) }
+    before { login_as(user, scope: :user) }
+
     scenario 'add an album to be reviewed' do
       visit new_album_path
       fill_in('Title', with: 'Damn')

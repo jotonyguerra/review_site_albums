@@ -30,15 +30,34 @@ feature "user can create an account" do
       expect(page).to have_content("Password can't be blank")
     end
   end
+
   context "As an Authenticated User" do
     let!(:user) { FactoryGirl.create(:user) }
     before { login_as(user, scope: :user) }
+    scenario "User updates their user info" do
+      visit edit_user_registration_path
+      fill_in 'Email', with: 'RandomChange@example.come'
+    end
     scenario "User Signs Out" do
       visit root_path
-      save_and_open_page
       click_link 'sign out'
       expect(page).to have_content("Bye Felicia")
       expect(page).to have_content("sign in")
+    end
+    scenario "User edits their account login info" do
+      visit edit_user_registration_path
+      fill_in 'Email', with: 'test_update@example.com'
+      fill_in 'Password', with: 'newpassword'
+      fill_in 'Password confirmation', with: 'newpassword'
+      fill_in 'Current password', with: 'password'
+      click_button 'Update'
+
+      expect(page).to have_content('Your account has been updated successfully')
+    end
+    scenario "User deletes their account" do
+      visit edit_user_registration_path
+      click_button 'Cancel my account'
+      expect(page).to have_content("Bye! Your account has been successfully cancelled. We hope to see you again soon.")
     end
   end
 
