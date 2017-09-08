@@ -5,10 +5,5 @@ class Admin::UsersController < ApplicationController
     @users = User.all
   end
 
-  def admin?
-    role == "admin"
-  end
 
 end
-#need to refactor
-#stolen from namespacing_with_tdd

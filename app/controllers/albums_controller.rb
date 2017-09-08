@@ -26,19 +26,19 @@ class AlbumsController < ApplicationController
   protected
 
   def authorize_user
-    if !user_signed_in? || !current_user.admin?
+    if !user_signed_in?
       flash[:notice] = "Please Sign in to add a new item"
       redirect_to root_path
-      # raise ActionController::RoutingError.new("Not Found")
     end
   end
 
   private
+
   def set_album
     @album = Album.find(params[:id])
   end
 
   def album_params
-    params.require(:albums).permit(:title, :artist, :release_year,)
+    params.require(:album).permit(:title, :artist, :release_year)
   end
 end
