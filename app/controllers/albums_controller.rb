@@ -6,6 +6,7 @@ class AlbumsController < ApplicationController
 
   def show
     @album = Album.find(params[:id])
+    @review = @album.reviews.build
   end
 
   def new
@@ -14,6 +15,7 @@ class AlbumsController < ApplicationController
 
   def create
     @album = Album.new(album_params)
+    @album.user = current_user
     if @album.save
       flash[:notice] = 'Successfully added album'
       redirect_to albums_path

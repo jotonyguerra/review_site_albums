@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170905221243) do
+ActiveRecord::Schema.define(version: 20170908012251) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,9 @@ ActiveRecord::Schema.define(version: 20170905221243) do
 
   create_table "reviews", force: :cascade do |t|
     t.string "review", limit: 1000, null: false
+    t.integer "user_id", null: false
+    t.integer "album_id", null: false
+    t.integer "rating", null: false
   end
 
   create_table "tracks", force: :cascade do |t|
