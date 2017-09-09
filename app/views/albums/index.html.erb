@@ -3,8 +3,7 @@
 <div>
 <% @albums.each do |album| %>
   <ul>
-    <li> <strong><%= album.title %></strong>
-      <%= link_to "show", album %>
+    <li> <strong><%= link_to album.title , album %></strong>
     </li>
     <span> <%= album.artist %> </span>
     <br>

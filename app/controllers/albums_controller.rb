@@ -25,6 +25,25 @@ class AlbumsController < ApplicationController
     end
   end
 
+  def edit
+    @album = Album.find(params[:id])
+  end
+
+  def update
+    @album = Album.find(params[:id])
+    if @album.update_attributes(album_params)
+      flash[:notice] = "Album updated"
+    else
+      render 'edit'
+    end
+  end
+
+  def destroy
+    Album.find(params[:id]).destroy
+    flash[:success] = "Album Deleted"
+    redirect_to root_path
+  end
+
   protected
 
   def authorize_user

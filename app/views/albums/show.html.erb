@@ -8,6 +8,7 @@
 </div>
 
 <div>
+
 <h2>New Review</h2>
 
 <%= form_for @review do |f| %>
@@ -21,4 +22,12 @@
 
   <%= f.submit %>
 <% end %>
+</div>
+
+<div>
+  <% if @album.user == current_user %>
+    <%= link_to 'edit', album_path %>
+    <%= link_to 'delete', album_path, method: :delete,
+                                 data: { confirm: "You sure?"} %>
+  <% end %>
 </div>
