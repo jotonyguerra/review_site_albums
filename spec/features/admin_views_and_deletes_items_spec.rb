@@ -8,12 +8,12 @@ feature "admin views users" do
   before { login_as(admin, scope: :user) }
 
   scenario 'Admin views all users on the index page' do
-    visit users_path
+    visit admin_users_path
     expect(page).to have_content('testuser1@gmail.com')
     expect(page).to have_content('delete')
   end
   scenario 'Admin deletes user' do
-    visit users_path
+    visit admin_users_path
     click_link('delete testuser4@gmail.com')
     expect(page).to_not have_content("testuser4@gmail.com")
     save_and_open_page
