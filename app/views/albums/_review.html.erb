@@ -1,0 +1,13 @@
+<h2>New Review</h2>
+
+<%= form_for([@album, @review]) do |f| %>
+  <%= f.label :rating %>
+  <%= f.collection_select :rating, Review::RATINGS, :to_s, :to_s %>
+
+  <%= f.label :review %>
+  <%= f.text_area :review %>
+
+  <%= f.hidden_field :album_id, value: @album.id %>
+
+  <%= f.submit %>
+<% end %>

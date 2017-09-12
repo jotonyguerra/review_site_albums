@@ -1,5 +1,6 @@
 class Admin::UsersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, :ensure_admin!
+
 
   def index
     @users = User.all
@@ -26,5 +27,15 @@ class Admin::UsersController < ApplicationController
                                    :password_confirmation)
   end
 
+  def ensure_admin!
+    unless current_user.admin?
+      flash[:notice] = 'Not an admin, user signed out and redirected'
+      sign_out current_user
+
+      redirect_to root_path
+
+      return false
+    end
+  end
 
 end
