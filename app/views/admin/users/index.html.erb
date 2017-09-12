@@ -2,6 +2,6 @@
 <% @users.each do |u| %>
     <li><%= u.email %>
     <bold><%= u.role %> </bold>
-    <%= link_to "delete #{u.email}", user_path(u), method: :delete,  data: { confirm: "You sure?"} %>
+    <%= link_to "delete #{u.email}", admin_user_path(u), method: :delete,  data: { confirm: "You sure?"} %>
     </li>
   <% end %>
