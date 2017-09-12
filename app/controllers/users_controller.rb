@@ -1,14 +1,21 @@
-class Admin::UsersController < ApplicationController
-  before_action :authorize_admin!
+class UsersController < ApplicationController
+  before_action :authenticate_user!
 
   def index
     @users = User.all
+    if current_user.role != 'admin'
+      redirect_to root_path
+    end
+  end
+
+  def show
+    @user = User.find(params[:id])
   end
 
   def destroy
     User.find(params[:id]).destroy
     flash[:success] = "User deleted"
-    # redirect_to users_url
+    redirect_to users_path
   end
 
   private
@@ -20,7 +27,7 @@ class Admin::UsersController < ApplicationController
   def user_params
       params.require(:user).permit(:email, :password,
                                    :password_confirmation)
-    end
+  end
 
 
 end

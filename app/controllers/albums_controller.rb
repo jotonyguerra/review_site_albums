@@ -31,10 +31,16 @@ class AlbumsController < ApplicationController
 
   def update
     @album = Album.find(params[:id])
-    if @album.update_attributes(album_params)
-      flash[:notice] = "Album updated"
-    else
+    @album.title = params[:album][:title]
+    @album.artist = params[:album][:artist]
+    @album.release_year  = params[:album][:release_year]
+    if @album.title.nil? || @album.artist.nil?
+      flash[:errors] = "Artist and/or Title cannot be empty "
       render 'edit'
+    else
+      @album.save
+      flash[:success] = "Album updated"
+      redirect_to album_path(@album)
     end
   end
 

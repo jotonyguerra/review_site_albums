@@ -26,7 +26,7 @@
 
 <div>
   <% if @album.user == current_user %>
-    <%= link_to 'edit', album_path %>
+    <%= link_to 'edit', edit_album_path %>
     <%= link_to 'delete', album_path, method: :delete,
                                  data: { confirm: "You sure?"} %>
   <% end %>

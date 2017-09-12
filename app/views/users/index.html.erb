@@ -1,0 +1,7 @@
+<h1> Users </h1>
+<% @users.each do |u| %>
+    <li><%= u.email %>
+    <bold><%= u.role %> </bold>
+    <%= link_to "delete #{u.email}", user_path(u), method: :delete,  data: { confirm: "You sure?"} %>
+    </li>
+  <% end %>

@@ -29,12 +29,13 @@ feature 'user adds an album' do
       expect(page).to have_content('Title and Artist must be filled')
     end
     scenario 'edit and change the title of an album' do
-      test_update = FactoryGirl.create(:album, title: 'Channel', artist: 'Frank Ocean')
+      test_update = FactoryGirl.create(:album, title: 'Channel', artist: 'Frank Ocean', user: user)
       test_update.save
+      visit root_path
       click_link 'Channel'
       click_link 'edit'
       fill_in('Title', with: 'Chanel')
-      click_link 'Create Album'
+      click_button 'Update Album'
       expect(page).to have_content('Chanel')
     end
     scenario 'add then delete an album' do
@@ -48,6 +49,7 @@ feature 'user adds an album' do
       click_link 'The Autobiography'
       click_link 'delete'
       expect(page).to have_content('Album Deleted')
+      expect(page).to_not have_content('The Autobiography')
     end
   end
 end
