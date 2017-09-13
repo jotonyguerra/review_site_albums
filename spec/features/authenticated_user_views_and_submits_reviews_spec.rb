@@ -2,11 +2,16 @@ require 'rails_helper'
 
 feature 'authenticaed user submits a review for an album' do
   let!(:album) {FactoryGirl.create(:album)}
-
+  let!(:user) { FactoryGirl.create(:user) }
+  let!(:review) {FactoryGirl.create(:review, user: user, album: album)}
   context 'as a non-user' do
+    scenario 'visit and view existing reviews for an album' do
+      visit root_path
+      click_link "Abbey Road"
+      expect(page).to have_content('da bestest thing on urf')
+    end
     scenario 'attemp to fill in review form for album' do
         visit root_path
-
         click_link 'Abbey Road'
         expect(page).to have_content('Sign in to leave a review')
     end
