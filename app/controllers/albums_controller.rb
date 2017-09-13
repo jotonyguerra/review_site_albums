@@ -7,6 +7,8 @@ class AlbumsController < ApplicationController
   def show
     @album = Album.find(params[:id])
     @review = @album.reviews.build
+    #need to grab User object so i can display the user email next to the review
+    @user = User.find(params[:user_id])
   end
 
   def new
@@ -66,6 +68,9 @@ class AlbumsController < ApplicationController
   end
 
   def album_params
-    params.require(:album).permit(:title, :artist, :release_year)
+    params.require(:album).permit(:title, :artist, :release_year, :user_id)
+  end
+  def user_params
+    param.require(:user).permit(:email)
   end
 end

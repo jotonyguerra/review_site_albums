@@ -2,10 +2,9 @@
 class ReviewsController < ApplicationController
 
   def create
-    @album = Album.find(review_params[:planet_id])
+    @album = Album.find(review_params[:album_id])
     @review = @album.reviews.build(review_params)
     @review.user = current_user
-
     if @review.save
       flash[:notice] = "Thanks for your input!"
     else
@@ -14,7 +13,7 @@ class ReviewsController < ApplicationController
     redirect_to @album
   end
 
-  protected
+  private
   def review_params
     params.require(:review).permit(:rating, :review, :album_id)
   end

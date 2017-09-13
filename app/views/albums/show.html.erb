@@ -1,14 +1,24 @@
-<h1> <%= @album.title %>  </h1>
+<div align="center"><h1> <%= @album.title %>  </h1></div>
 
-<div>
+<div align="center">
   <ul>
-  <li><%= @album.artist %> </li>
-  <li><%= @album.release_year %></li>
+  <%= @album.artist %> <br>
+  <%= @album.release_year %>
   </ul>
 </div>
 
-<div>
-  <%= render 'review' %>
+<div class="reviews">
+  <% if user_signed_in? %>
+    <%= render 'review' %>
+  <% else %>
+    <p> Sign in to leave a review </p>
+  <% end %>
+<h2> User Reviews </h2>
+  <% if @album.reviews %>
+    <% @album.reviews.each do |rev| %>
+      <li><%= rev.review %> -<%= @user.email %></li>
+    <% end %>
+  <%end%>
 </div>
 
 <div>
