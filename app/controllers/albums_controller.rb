@@ -7,8 +7,7 @@ class AlbumsController < ApplicationController
   def show
     @album = Album.find(params[:id])
     @review = @album.reviews.build
-    #need to grab User object so i can display the user email next to the review
-    @user = User.find(params[:user_id])
+    @reviews = @album.reviews
   end
 
   def new

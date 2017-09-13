@@ -16,7 +16,13 @@
 <h2> User Reviews </h2>
   <% if @album.reviews %>
     <% @album.reviews.each do |rev| %>
-      <li><%= rev.review %> -<%= @user.email %></li>
+      <li><%= rev.review %>
+        <% if rev.id.nil? %>
+            <%= nil %>
+        <% else %>
+        -<font color="blue"> <%= rev.user.email %> </font></li>
+        <% end %>
+
     <% end %>
   <%end%>
 </div>
