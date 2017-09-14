@@ -6,6 +6,11 @@
             <%= nil %>
         <% else %>
         -<font color="blue"> <%= rev.user.email %> </font></li>
+          <% if rev.user == current_user %>
+            <%= link_to 'edit', edit_album_review_path(rev) %>
+            <%= link_to 'delete', album_review_path(rev), method: :delete, data: {confirm: 'You sure?'} %>
+          <% end %>
         <% end %>
+      
     <% end %>
   <%end%>
