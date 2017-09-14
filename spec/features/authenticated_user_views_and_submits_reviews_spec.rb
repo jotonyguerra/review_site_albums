@@ -19,6 +19,8 @@ feature 'authenticaed user submits a review for an album' do
   context 'signed in user' do
     let!(:user) { FactoryGirl.create(:user) }
     before { login_as(user, scope: :user) }
+    let!(:review) {FactoryGirl.create(:review, user: user, album: album)}
+
 
     scenario 'fill in review form on review site' do
       visit root_path
@@ -27,6 +29,17 @@ feature 'authenticaed user submits a review for an album' do
       select('5', from: 'Rating')
       click_button 'Create Review'
       expect(page).to have_content('pretty good album')
+    end
+
+    scenario 'edit already submitted review' do
+      visit root_path
+      click_link 'Abbey Road'
+      save_and_open_page
+      click_link 'edit'
+      fill_in 'Review', with: 'its ok'
+      select('5', from: 'Rating')
+      click_button 'Update Review'
+      expect(page).to have_content('its ok')
     end
 
   end
