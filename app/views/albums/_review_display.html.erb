@@ -1,0 +1,17 @@
+<h2> User Reviews </h2>
+  <% if @album.reviews %>
+    <% @album.reviews.each do |rev| %>
+      <li><%= rev.rating %> <%= rev.review %>
+        <% if rev.id.nil? %>
+            <%= nil %>
+        <% else %>
+          -<font color="blue"> <%= rev.user.email %> </font></li>
+        <% end %>
+        <% if rev.id.nil?%>
+          <%= nil %>
+        <% elsif rev.user == current_user %>
+          <%= link_to 'edit', edit_album_review_path(@album, rev.id) %>
+          <%= link_to 'delete', album_review_path(@album, rev.id), method: :delete, data: {confirm: 'You sure?'} %>
+        <% end %>
+    <% end %>
+  <%end%>
