@@ -42,5 +42,12 @@ feature 'authenticaed user submits a review for an album' do
       expect(page).to have_content('its ok')
     end
 
+    scenario 'delete a submitted review' do
+      visit root_path
+      click_link 'Abbey Road'
+      click_link 'delete'
+      expect(page).to_not have_content('5 da bestest thing on urf')
+    end
+
   end
 end

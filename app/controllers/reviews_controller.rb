@@ -37,7 +37,7 @@ class ReviewsController < ApplicationController
   def destroy
     Review.find(params[:id]).destroy
     flash[:success] = "Review Deleted"
-    redirect_to album_path(@album)
+    redirect_to root_path
   end
 
   private
